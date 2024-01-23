@@ -13,7 +13,7 @@ library(tidyverse)
 library(dplyr)
 library(readr)
 
-#### Donload Data ####
+#### Download Data ####
 
 # Daily shelter visitor count
 package <- show_package("21c83b32-d5a8-4106-a54f-010dbe49f6f2")
@@ -27,11 +27,10 @@ resources <- list_package_resources("21c83b32-d5a8-4106-a54f-010dbe49f6f2")
 # load the first datastore resource as a sample
 shelter_count <- filter(datastore_resources, row_number()==1) %>% get_resource()
 
+#Citation: https://open.toronto.ca/dataset/daily-shelter-overnight-service-occupancy-capacity/
 
 #### Save data ####
-write_csv(x = shelter_count, file = "shelter_count.csv")
+write_csv(shelter_count, "outputs/data/shelter_raw.csv")
 
-#### Read Data ####
-readr::read_csv("inputs/data/shelter_count_raw.csv")
 
          

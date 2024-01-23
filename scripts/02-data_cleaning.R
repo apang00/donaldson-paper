@@ -15,11 +15,11 @@ library(readr)
 
 #### Clean data ####
 # First read in the raw data
-shelter_data_raw <- readr::read_csv("inputs/data/shelter_count_raw.csv")
+shelter_raw <- read_csv("inputs/data/shelter_raw.csv")
 
 # From the raw data, I want to remove the columns that are not needed
 columns_req <- 
-  shelter_data_raw[, c("OCCUPANCY_DATE", "SECTOR", "SERVICE_USER_COUNT")]
+  shelter_raw[, c("OCCUPANCY_DATE", "SECTOR", "SERVICE_USER_COUNT")]
 
 # From the column requirements, I sum the column which has the count of all
 # the total people per sector, then I combine the sectors based on dates
@@ -33,5 +33,7 @@ cleaned_shelter <- columns_req %>%
   summarise(Sector_Sum = sum(SERVICE_USER_COUNT))
 cleaned_shelter
 
+#Citation: https://tellingstorieswithdata.com/errata.html#errors
+
 #### Save data ####
-write_csv(cleaned_shelter, "outputs/data/cleaned_shelter.csv")
+write_csv(shelter_cleaned, "outputs/data/shelter_cleaned.csv")

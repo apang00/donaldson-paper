@@ -14,8 +14,11 @@ library(dplyr)
 library(readr)
 
 #### Test data ####
+# A few test cases to ensure that the data is correct, all final
+# print statements should come out to be true if data is accurate
+
 # First read in the data from the clean data
-clean_data <- readr::read_csv("outputs/data/raw_voter_statistics.csv")
+clean_data <- read_csv("outputs/data/shelter_cleaned.csv")
 
 # Check that the earliest date is not before January 1st
 earliest_date_condition <- min(clean_data$OCCUPANCY_DATE) >

@@ -39,6 +39,10 @@ simulated_data <-
   )
 
 simulated_data
+
+#Citation: https://tellingstorieswithdata.com/02-drinking_from_a_fire_hose.html
+## https://r-graph-gallery.com/218-basic-barplots-with-ggplot2.html 
+
 # Note: For simplicity, the simulated data only had a single demographic per
 # date. However, in the real data, there could be potentially many tens or
 # potentially hundreds of demographics per day and probably a much wider
