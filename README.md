@@ -3,7 +3,7 @@
 ## Paper Overview
 
 The paper analyzes data from Daily Shelter & Overnight Service Occupancy and Capacity in Toronto. What I want to figure out is which groups tend to use shelters the most. In hindsight, that information can be used to implement more care towards
-the majority group. LLMs and co-pilot was NOT used in this assignment.
+the majority group. LLMs, co-pilot, and AI technologies were NOT used in this assignment.
 
 ## File Structure
 

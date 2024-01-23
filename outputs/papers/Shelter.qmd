@@ -1,25 +1,114 @@
 ---
-title: "shelter"
-format: html
+title: "Which Group Uses City Shelter Predominantly? An Analyses of City Shelter Occupations"
+author: Yi Fei Pang
+date: today
+date-format: long
+abstract: "Shelter facilities are becoming more and more prevalent throughout the years. Based on the data from early-mid January of 2024, Mixed Adults seem to be the group that uses shelters the most followed by families and Youths use shelters the least. This suggests that there should be more resources in place that can help adults and families in these shelters, as well, maybe resources to help the youths so there will be less Mixed Adults in the shelters in the future."
+format: pdf
+toc: true
+number-sections: true
+bibliography: ref.bib
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
 ```{r}
-1 + 1
-```
-
-You can add options to executable code like this 
-
-```{r}
+#| message: false
 #| echo: false
-2 * 2
+
+
+#### Workplace Setup ####
+
+# Get required libraries
+library(tidyverse)
+library(knitr)
+library(ggplot2)
+library(ggrepel)
+library(here)
+
+# Read in necessary data
+# cleaned_shelter <- read.csv(
+#   file = here("outputs/data/shelter_cleaned.csv"),
+#   show_col_type = FALSE
+# )
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+## Introduction
+As Canada experiences higher levels of immigration (Lavoie, 2023), global 
+warming causing more natural disasters, and housing prices continue to 
+rise (Connelly, 2022), many are left without a home at times. In the past few 
+years, there has been multiple instances where shelters have been overrun 
+because they were not prepared for the massive quantity of people in need.
+
+As Canada reaches a historical high number of immigrants at almost 500,000
+annually (statista, 2024) creating a situation where the people
+coming to Canada in hopes of safety and a new life are greeted without a proper
+home or shelter. This leaves hundreds of refugee families left on the streets.
+(Lavoie, 2023)
+
+Furthermore, as the housing crisis continues where home prices spike to 
+abnormal heights, rent increases, and mortgage rates increase, many Canadians
+are left without a home. This primarily affects young adults and youths who, 
+in the past would be able to pay rent and buy homes with lower income levels.
+(Pereira, 2022)
+
+Since the need for shelters is becoming a national issue,
+by analyzing the demographics of the people who use shelters along with the 
+quantity of those demographics, cities can offer a more tailored solution to
+provide for those who need shelters. Throughout my analysis, I will provide
+statistics along with graphs to show findings for shelter users by demographics.
+
+## Data
+The data used in my analysis comes solely from OpenDataToronto.
+Data was collected and analyzed using the statistical programming software R
+[@r], with additional support from `tidyverse` [@rTidyverse], `ggplot2` 
+[@rGgplot2], `dplyr` [@rDplyr], `readr` [@rReadr], 
+`tibble` [@rTibble], `janitor` [@rJanitor], `ggrepel` [@rggrepel], and 
+`here` [@rHere]. The collection, cleaning, modelling and analysis of the data
+will be detailed later on in this paper.
+
+## Shelter Occcupation
+The dataset presents an extensive csv of people who use shelters, the detailed
+location of the shelters, the capacity, and the demographics of the 
+shelter-goers. The dates of this dataset ranges from the first day of January 
+2024 up until January 21st.
+
+## Data Cleaning
+The data I acquired had a detailed description of the shelters. First, there
+every row started with a date and is a variable required and that should be 
+preserved through data cleaning. The dates ranged between 2024-01-01 all the way
+to 2024-01-21. The next few columns were less important, these contained the 
+Organization ID, name of the shelter, location address, postal code, city, and
+province. The next few columns contain details about the program. The program 
+ID, name, sector, model, area, and service type. One important column is the
+sector because it identifies the demography of the people who use the shelter.
+The rest of the data is not as useful for my analysis.
+
+```{r}
+
+```
+## Similar Datasets
+There was a certain dataset from OpenTorontData that had the same nature of data
+(Source: https://open.toronto.ca/dataset/daily-shelter-occupancy/) However, the
+data came from 2020 and earlier. The shelter situation from PreCovid was much
+more mild and the data from those years would not be an accurate representation
+nor an accurate measure of the potentials in the coming years. Therefore, I 
+chose the more recent dataset.
+
+## Conlusion
+The results show a predominantly adult mix adult demographic in shelters
+throughout the GTA. I think one fault of this dataset is its ambiguous sector
+labeling as I feel that mixed adults could easily have been separated into the
+two sectors of Men and WOmen. However, this dataset does show that most people
+who occupies the shelters are adults. Furthermore, the data shows that the
+demographics that occupy the shelters seem to be consistent on a day to day 
+basis. There does not seem to be huge shifts in people count. I think to notice
+a significant difference of shelter population flow, a longer time period must
+be analysed. Instead of changes daily, perhaps changes weekly or monthly would
+show significant change.
+
+Based on the data, we can posit that more resources must be used to help the
+adults and family in these shelters, as they are the predominant demographic. 
+
+## References
+
+
+
