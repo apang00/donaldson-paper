@@ -1,5 +1,5 @@
 #### Preamble ####
-# Purpose: Downloads and saves the data from two datasets from OpenDataToronto
+# Purpose: Downloads and saves the data from OpenDataToronto
 # Author: Yi Fei Pang
 # Date: 2024-01-23
 # Contact: yifei.pang@mail.utoronto.ca
@@ -32,6 +32,6 @@ shelter_count <- filter(datastore_resources, row_number()==1) %>% get_resource()
 write_csv(x = shelter_count, file = "shelter_count.csv")
 
 #### Read Data ####
-readr::read_csv("inputs/data/shelter_count.csv")
+readr::read_csv("inputs/data/shelter_count_raw.csv")
 
          

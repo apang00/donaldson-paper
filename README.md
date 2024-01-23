@@ -1,10 +1,10 @@
-# Starter folder
+# Which Group Uses City Shelter Predominantly? An Analyses of City Shelter Occupations
 
-## Overview
+## Paper Overview
 
-This repo provides students with a foundation for their own projects associated with *Telling Stories with Data*. You do not need every aspect for every paper and you should delete aspects that you do not need.
-
-To use this folder, click the green "Code" button", then "Download ZIP". Move the downloaded folder to where you want to work on your own computer, and then modify it to suit.
+The paper analyzes data from Daily Shelter & Overnight Service Occupancy and Capacity. What I want to figure out is 
+which groups tend to use shelters the most. In hindsight, that information can be used to implement more care towards
+the majority. 
 
 ## File Structure
 

@@ -1,37 +1,29 @@
 #### Preamble ####
-# Purpose: Models... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 11 February 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Model the data from cleaned_shelter
+# Author: Yi Fei Pang
+# Date: 2024-01-23
+# Contact: yifei.pang@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
-
+# Pre-requisites: None
 
 #### Workspace setup ####
 library(tidyverse)
-library(rstanarm)
+library(ggplot2)
 
 #### Read data ####
-analysis_data <- read_csv("outputs/data/analysis_data.csv")
+cleaned_shelter <- read_csv("outputs/data/cleaned_shelter.csv")
 
 ### Model data ####
-first_model <-
-  stan_glm(
-    formula = flying_time ~ length + width,
-    data = analysis_data,
-    family = gaussian(),
-    prior = normal(location = 0, scale = 2.5, autoscale = TRUE),
-    prior_intercept = normal(location = 0, scale = 2.5, autoscale = TRUE),
-    prior_aux = exponential(rate = 1, autoscale = TRUE),
-    seed = 853
-  )
-
+model <- ggplot(cleaned_shelter, aes(x = as.Date(OCCUPANCY_DATE), 
+                                     y = Sector_Sum, fill = SECTOR)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(title = "Shelter Users by Demographics",
+       x = "Date and Sector",
+       y = "People Count",
+       fill = "Sector") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 #### Save model ####
-saveRDS(
-  first_model,
-  file = "outputs/models/first_model.rds"
-)
-
+ggsave("model.png", plot = model)
 

@@ -1,44 +1,37 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
+# Purpose: Clean data from raw dataset of shelters
+# Author: Yi Fei Pang
+# Date: 2024-01-23
+# Contact: yifei.pang@mail.utoronto.ca
 # License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Pre-requisites: None
+
 
 #### Workspace setup ####
 library(tidyverse)
+library(janitor)
+library(dplyr)
+library(readr)
 
 #### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+# First read in the raw data
+shelter_data_raw <- readr::read_csv("inputs/data/shelter_count_raw.csv")
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
-  mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+# From the raw data, I want to remove the columns that are not needed
+columns_req <- 
+  shelter_data_raw[, c("OCCUPANCY_DATE", "SECTOR", "SERVICE_USER_COUNT")]
+
+# From the column requirements, I sum the column which has the count of all
+# the total people per sector, then I combine the sectors based on dates
+cleaned_shelter <- columns_req %>%
+  select(
+    OCCUPANCY_DATE,
+    SECTOR,
+    SERVICE_USER_COUNT
+  ) %>% 
+  group_by(OCCUPANCY_DATE, SECTOR) %>%
+  summarise(Sector_Sum = sum(SERVICE_USER_COUNT))
+cleaned_shelter
 
 #### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+write_csv(cleaned_shelter, "outputs/data/cleaned_shelter.csv")
